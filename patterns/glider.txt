@@ -1,0 +1,9 @@
+# Glider
+
+rows = 30
+cols = 30
+
+...
+..x
+x.x
+.xx

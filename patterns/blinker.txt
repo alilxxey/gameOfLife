@@ -1,0 +1,10 @@
+# Blinker, period 2
+
+rows = 30
+cols = 30
+
+...
+.xx
+.xx
+...
+...

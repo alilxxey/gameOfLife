@@ -1,0 +1,5 @@
+numpy
+PyQt5
+PyQt5-Qt5
+PyQt5-sip
+sqlite3
