@@ -1,3 +1,5 @@
+import ast
+
 import numpy as np
 from collections import deque
 
@@ -181,7 +183,8 @@ class GameOfLifeMaker:
 
     # Обновление игры по записи из базы данных
     @classmethod
-    def update_from_database(cls, game, age, init_str, curr_str, size=None):
+    def update_from_database(cls, game, age: int, init_str: str, curr_str: str, size=None):
+        size = ast.literal_eval(size)
         size = (size or (game.width(), game.height()))
 
         game.clear()

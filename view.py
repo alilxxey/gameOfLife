@@ -278,7 +278,7 @@ class MainWindow(QMainWindow):
         age = self.game.age
         initial_state = self.game.initial_state
         current_state = self.game.state
-
+        size = (self.game.width(), self.game.height())
         init_str = GameOfLifeLoader.matrix_to_string(initial_state)
         curr_str = GameOfLifeLoader.matrix_to_string(current_state)
 
@@ -286,11 +286,11 @@ class MainWindow(QMainWindow):
         cur = con.cursor()
         cur.execute("""
                         INSERT INTO data
-                         (game_name, age, init_str, curr_str)
+                         (game_name, age, init_str, curr_str, size)
                          VALUES
-                         (?, ?, ?, ?)
+                         (?, ?, ?, ?, ?)
                         """,
-                    (game_name, age, init_str, curr_str))
+                    (game_name, age, init_str, curr_str, str(size)))
         con.commit()
         con.close()
         print(repr(game_name))  # str
@@ -308,7 +308,6 @@ class MainWindow(QMainWindow):
 
         dialog = GameLoadDialog(self.game)
         dialog.exec_()
-
         if not dialog.load_success:
             return None
 
@@ -316,10 +315,13 @@ class MainWindow(QMainWindow):
             game=self.game,
             age=dialog.game_age,
             init_str=dialog.game_init_str,
-            curr_str=dialog.game_curr_str
+            curr_str=dialog.game_curr_str,
+            size=dialog.size
+            #TODO: size=()
         )
-
+        print('1')
         self.field.update()
         self.update_age()
         self.newgame_ui_state()
+        print('2')
 

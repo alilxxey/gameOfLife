@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QLabel, QLineEdit, QVBoxLayout
 from PyQt5.QtWidgets import QTableWidget
 from PyQt5.QtWidgets import QTableWidgetItem
 import sqlite3
-
+from model import GameOfLifeMaker
 
 class GameFinishedDialog(QDialog):
     def __init__(self, message, title=open("text.txt").read()):
@@ -104,6 +104,7 @@ class GameLoadDialog(QDialog):
         self.game_age = None
         self.game_init_str = None
         self.game_curr_str = None
+        self.size = None
         self.resize(300, 300)
         self.setWindowTitle(title)
 
@@ -141,7 +142,7 @@ class GameLoadDialog(QDialog):
 
         buttons.accepted.connect(self.accept)
         # buttons.accepted.connect(self._load_game)
-        buttons.rejected.connect(self.reject)
+        buttons.rejected.connect(self.close)
 
     def clickedRowColumn(self, r, c):
         con = sqlite3.connect('database.db')
@@ -156,5 +157,14 @@ class GameLoadDialog(QDialog):
         self.game_age = k[1]
         self.game_init_str = k[2]
         self.game_curr_str = k[3]
-        # GameOfLifeMaker.update_from_database(self.game, **{"age": k[1], "init_str": k[2], 'curr_str': k[3]})
+        self.size = k[4]
+        print(k[4])
+        #GameOfLifeMaker.update_from_database(
+        #                                     self.game,
+        #                                     age=k[1],
+        #                                    init_str=k[2],
+        #                                     curr_str=k[3]
+        #                                     )
+
         con.close()
+        return k
