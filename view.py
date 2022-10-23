@@ -16,10 +16,10 @@ import ast
 # Цвета для клеток
 class GameFieldViewSettings:
     cfg = configparser.ConfigParser()
-    cfg.read('config.ini')
+    cfg.read('utils/config.ini')
 
-    live_cell_color = ast.literal_eval(cfg['DEFAULT']['live_cell_color'])
-    dead_cell_color = ast.literal_eval(cfg['DEFAULT']['dead_cell_color'])
+    live_cell_color = ast.literal_eval(cfg['VIEW']['live_cell_color'])
+    dead_cell_color = ast.literal_eval(cfg['VIEW']['dead_cell_color'])
 
 
 # Пример использования
@@ -282,7 +282,7 @@ class MainWindow(QMainWindow):
         init_str = GameOfLifeLoader.matrix_to_string(initial_state)
         curr_str = GameOfLifeLoader.matrix_to_string(current_state)
 
-        con = sqlite3.connect('database.db')
+        con = sqlite3.connect('utils/database.db')
         cur = con.cursor()
         cur.execute("""
                         INSERT INTO data

@@ -1,5 +1,3 @@
-numpy
-PyQt5
-PyQt5-Qt5
-PyQt5-sip
-sqlite3
+numpy==1.23.4
+PyQt5==5.15.7
+configparser

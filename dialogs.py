@@ -6,8 +6,9 @@ from PyQt5.QtWidgets import QTableWidgetItem
 import sqlite3
 from model import GameOfLifeMaker
 
+
 class GameFinishedDialog(QDialog):
-    def __init__(self, message, title=open("text.txt").read()):
+    def __init__(self, message, title=open("utils/text.txt").read()):
         super().__init__()
         self.setWindowTitle(title)
 
@@ -113,7 +114,7 @@ class GameLoadDialog(QDialog):
 
         buttons = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
 
-        con = sqlite3.connect('database.db')
+        con = sqlite3.connect('utils/database.db')
         cur = con.cursor()
         items = cur.execute("""SELECT * FROM data
         """)
@@ -145,7 +146,7 @@ class GameLoadDialog(QDialog):
         buttons.rejected.connect(self.close)
 
     def clickedRowColumn(self, r, c):
-        con = sqlite3.connect('database.db')
+        con = sqlite3.connect('utils/database.db')
         cur = con.cursor()
         items = cur.execute(f"""SELECT * FROM 'data'
          WHERE game_name = '{self.tableWidget.item(r, 0).text()}'
