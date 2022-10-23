@@ -7,6 +7,7 @@ import configparser
 
 
 if __name__ == "__main__":
+
     app = QApplication([])
     cfgmain = configparser.ConfigParser()
     cfgmain.read('utils/config.ini')

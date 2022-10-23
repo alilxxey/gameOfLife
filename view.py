@@ -2,7 +2,6 @@ import numpy as np
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QImage, QPixmap
 import configparser
-
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtWidgets import QLabel, QPushButton, QSlider, QWidget
 from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout
@@ -317,11 +316,10 @@ class MainWindow(QMainWindow):
             init_str=dialog.game_init_str,
             curr_str=dialog.game_curr_str,
             size=dialog.size
-            #TODO: size=()
+            # TODO: size=() # done
+
         )
-        print('1')
         self.field.update()
         self.update_age()
         self.newgame_ui_state()
-        print('2')
 
