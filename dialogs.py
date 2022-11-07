@@ -132,7 +132,8 @@ class GameLoadDialog(QDialog):
 
             con = sqlite3.connect('utils/database.db')
             cur = con.cursor()
-            items = cur.execute("""SELECT * FROM data
+            items = cur.execute("""
+            SELECT * FROM data
             """)
             k = []
             for i in items:
@@ -178,7 +179,6 @@ class GameLoadDialog(QDialog):
             self.game_init_str = k[2]
             self.game_curr_str = k[3]
             self.size = k[4]
-            print(k[4])
             #GameOfLifeMaker.update_from_database(
             #                                     self.game,
             #                                     age=k[1],
